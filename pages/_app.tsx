@@ -2,6 +2,7 @@ import '@assets/main.css'
 import '@assets/chrome-bug.css'
 import 'keen-slider/keen-slider.min.css'
 import Script from 'next/script'
+
 import { FC, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
@@ -18,39 +19,30 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Head />
+      <Head></Head>
+      <Script
+        charSet="UTF-8"
+        type="text/javascript"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function(config){
+            config.appKey = "AD-AAB-ABK-BRZ";
+            config.adrumExtUrlHttp = "http://cdn.appdynamics.com";
+            config.adrumExtUrlHttps = "https://cdn.appdynamics.com";
+            config.beaconUrlHttp = "http://pdx-col.eum-appdynamics.com";
+            config.beaconUrlHttps = "https://pdx-col.eum-appdynamics.com";
+            config.resTiming = {"bufSize":200,"clearResTimingOnBeaconSend":true};
+            config.maxUrlLength = 512;
+        })(window["adrum-config"] || (window["adrum-config"] = {}));`,
+        }}
+      />
+      <Script src="//cdn.appdynamics.com/adrum/adrum-21.7.0.3493.js" />
       <ManagedUIContext>
         <Layout pageProps={pageProps}>
           <Component {...pageProps} />
         </Layout>
       </ManagedUIContext>
-       <Script
-
-dangerouslySetInnerHTML={{
-
-  __html: `
-
- window["adrum-start-time"] = new Date().getTime();
-(function(config){
-    config.appKey = "AD-AAB-ABK-BSS";
-    config.adrumExtUrlHttp = "http://cdn.appdynamics.com";
-    config.adrumExtUrlHttps = "https://cdn.appdynamics.com";
-    config.beaconUrlHttp = "http://pdx-col.eum-appdynamics.com";
-    config.beaconUrlHttps = "https://pdx-col.eum-appdynamics.com";
-    config.useHTTPSAlways = true;
-    config.maxUrlLength = 512;
-    config.longStackTrace = true;
-})(window["adrum-config"] || (window["adrum-config"] = {}));
-
-
-  `
-
-}}
-
-/>
-<Script src="//cdn.appdynamics.com/adrum/adrum-21.7.0.3493.js" />
-   
-      
     </>
   )
 }
