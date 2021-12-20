@@ -30,7 +30,7 @@ dangerouslySetInnerHTML={{
 
   __html: `
 
-  window["adrum-start-time"] = new Date().getTime();
+ window["adrum-start-time"] = new Date().getTime();
 (function(config){
     config.appKey = "AD-AAB-ABK-BSS";
     config.adrumExtUrlHttp = "http://cdn.appdynamics.com";
@@ -38,7 +38,6 @@ dangerouslySetInnerHTML={{
     config.beaconUrlHttp = "http://pdx-col.eum-appdynamics.com";
     config.beaconUrlHttps = "https://pdx-col.eum-appdynamics.com";
     config.useHTTPSAlways = true;
-    config.resTiming = {"bufSize":200,"clearResTimingOnBeaconSend":true};
     config.maxUrlLength = 512;
     config.longStackTrace = true;
 })(window["adrum-config"] || (window["adrum-config"] = {}));
